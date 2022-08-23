@@ -53,3 +53,7 @@ font-weight: 800;
 font-size: 12px;
 line-height: 14px;
 `;
+
+export const Color_Row = styled.tbody `
+
+`;
