@@ -1,9 +1,7 @@
 import * as React from "react";
 import { render } from "react-dom";
-
+import {Container,Linha,Linha2,Table1,Name} from './Table_Styles'
 import { useTable, Column, useSortBy } from "react-table";
-
-import {Name,Name2, Linha, Linha2} from "./Table_Styles";
 
 const columns: Column<Data>[] = [
   //colunas
@@ -63,6 +61,7 @@ const columns: Column<Data>[] = [
 },
 
 
+
 {
   Header:"Consumo Total",
   columns: [
@@ -77,6 +76,7 @@ const columns: Column<Data>[] = [
     }
   ]
 }
+
 
 ];
 
@@ -103,10 +103,10 @@ const data : Data[ ] = [
   // rows
 
   { 
-    valor: 0,
-    valor_CPonta:4,
-    valor_CReservado:5,
-    valor_CTotal:56,
+    valor: 13750000000000,
+    valor_CPonta:4000000,
+    valor_CReservado:5000000000,
+    valor_CTotal:5600000000000000000,
     ////////////
 
     data_age: " 16/06/2001",
@@ -117,7 +117,7 @@ const data : Data[ ] = [
     rowns1: "Máximo"
   },
   {
-    valor: 99,
+    valor: 9999999999999,
     valor_CPonta:4,
     valor_CReservado:5,
     valor_CTotal:56,
@@ -131,7 +131,7 @@ const data : Data[ ] = [
     rowns1: "Médio"
   },
   {
-    valor: 8,
+    valor: 800000000,
     valor_CPonta:4,
     valor_CReservado:5,
     valor_CTotal:56,
@@ -146,7 +146,7 @@ const data : Data[ ] = [
   },
 
   {
-    valor: 8,
+    valor: 80000000000,
     valor_CPonta:4,
     valor_CReservado:5,
     valor_CTotal:56,
@@ -171,32 +171,39 @@ export function Table() {
   } = useTable<Data>({ columns, data }, useSortBy);
 
   return (
-    <Name {...getTableProps()}>
+    
+    <Container >
+    <Table1 {...getTableProps()}>
       <thead>
         {headerGroups.map((headerGroup) => (
-          <Name2  {...headerGroup.getHeaderGroupProps()}>
+          <Name {...headerGroup.getHeaderGroupProps()} >
+
             {headerGroup.headers.map((column) => (
               <Linha   
               {...column.getHeaderProps()}> 
                 {column.render("Header")}
               </Linha>
             ))}
-          </Name2>
+          </Name>
         ))}
       </thead>
       <tbody {...getTableBodyProps()}>
         {rows.map((row, i) => {
           prepareRow(row);
           return (
-            <Name2 {...row.getRowProps()}>
+            <Name {...row.getRowProps()}>
               {row.cells.map((cell) => {
-                return <Linha2 {...cell.getCellProps()}>{cell.render("Cell")}</Linha2>;
+                return <Linha2 {...cell.getCellProps()}>
+                  {cell.render("Cell")}
+                  </Linha2>;
               })}
-            </Name2>
+            </Name>
           );
         })}
       </tbody>
-    </Name>
-  );
+    </Table1>
+  
+  </Container>
+  )
 }
 
